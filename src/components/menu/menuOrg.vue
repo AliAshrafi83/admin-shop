@@ -10,15 +10,38 @@
       </div>
       <!-- _______________________________________________________________ -->
       <div class="search-box"><input type="text"></div>
-      <div class="items"></div>
+      <div class="items">
+        <div class="item" v-for="(item, index) in menuitems" :key="index" v-on:click="setContentPage(item.name)"  v-text="item.text"></div>
+      </div>
       <!-- _______________________________________________________________ -->
     </div>
   </div>
 </template>
  
 <script>
+import { mapGetters } from 'vuex'
 export default {
-
+  data() {
+    return {
+      menuitems: [
+        {text: 'صفحه اصلی', name: 'home'},
+        {text: 'محصولات', name: 'Products'},
+        {text: 'کامنت ها', name: 'comments'},
+        {text: 'دسته بندی ها', name: 'Grouping'},
+        {text: 'کاربران', name: 'users'},
+        {text: 'تخفیف ها',name: 'offs'},
+      ],
+      
+      selectedPage:'',
+    }
+  },
+  methods:{
+    setContentPage(selectPage){
+      this.selectedPage = selectPage;
+      console.log(selectPage);
+    }
+  },
+  ...mapGetters(['selectedPage'])
 }
 </script>
  
@@ -31,6 +54,7 @@ export default {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
+  padding-bottom: 1rem;
 }
 
 /* ___________________________________________________________________ */
@@ -66,6 +90,7 @@ export default {
   width: 80%;
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .search-box input {
@@ -76,7 +101,23 @@ export default {
   padding-inline: 0.4rem;
 }
 
-.items {}
+.item {
+  text-align: center;
+  border-radius: 0.3rem;
+  margin: 0.5rem;
+  padding: 2vw;
+  border: 1px solid #e1e1e1;
+  padding-inline: 4vw;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.item:hover {
+  padding: 2.2vw;
+  padding-inline: 4.4vw;
+  background-color: #e1e1e1;
+  font-size: large;
+}
 
 .item-boxs {
   height: 80px;

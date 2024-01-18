@@ -50,7 +50,7 @@ export default {
 }
 
 .container {
-  background-color: #727272;
+  background-color: #ececec;
   display: grid;
   grid-template-columns: 18vw 80vw;
   border-radius: 1.5rem;

@@ -5,6 +5,7 @@
       <navbar />
       <!-- _______________________________________________________________ -->
       <div class="items">
+        <button v-on:click="show">show</button>
       </div>
       <!-- _______________________________________________________________ -->
     </div>
@@ -12,11 +13,25 @@
 </template>
 <script>
 import navbar from "@/components/contentPage/navbar/navbarContent.vue"
-
+import mapState from 'vuex'
+import { mapState } from 'vuex';
 export default {
   components: {
     navbar
-  }
+  },
+  data(){
+    return{
+      page:'',
+    }
+  },
+  methods:{
+    show(){
+      console.log(this.setContent);
+    }
+  },
+  computed: mapState({
+    page: state => state.selectedPage
+  })
 }
 </script>
 <style scoped>
